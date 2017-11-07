@@ -3,6 +3,9 @@
 
 EAPI=5
 
+LAPACK_COMPAT_ALL=1
+LAPACK_CONDITIONAL_FLAG="lapack"
+
 inherit cmake-utils eutils multilib
 
 # deal.II uses its own FindLAPACK.cmake file that calls into the system

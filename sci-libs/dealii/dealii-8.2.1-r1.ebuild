@@ -3,6 +3,9 @@
 
 EAPI=5
 
+LAPACK_COMPAT_ALL=1
+LAPACK_CONDITIONAL_FLAG="lapack"
+
 inherit cmake-utils eutils multilib
 
 # deal.II uses its own FindLAPACK.cmake file that calls into the system
@@ -49,9 +52,8 @@ REQUIRED_USE="
 RDEPEND="dev-libs/boost
 	app-arch/bzip2
 	sys-libs/zlib
-	arpack? ( sci-libs/arpack[mpi=] )
+	arpack? ( sci-libs/arpack[${LAPACK_USEDEP},mpi=] )
 	hdf5? ( sci-libs/hdf5[mpi=] )
-	lapack? ( virtual/lapack )
 	metis? ( >=sci-libs/parmetis-4 )
 	mpi? ( virtual/mpi )
 	mumps? ( sci-libs/mumps[mpi] )
