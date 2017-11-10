@@ -5,7 +5,10 @@ EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit autotools-utils eutils flag-o-matic fortran-2 multilib python-single-r1 toolchain-funcs
+BLAS_COMPAT_ALL=1
+LAPACK_COMPAT_ALL=1
+
+inherit autotools-utils eutils flag-o-matic fortran-2 multilib python-single-r1 toolchain-funcs blas lapack
 
 DESCRIPTION="Total energy, charge density and electronic structure using DFT"
 HOMEPAGE="http://www.abinit.org/"
@@ -19,8 +22,7 @@ IUSE="atompaw bigdft cuda cuda-double -debug +etsf_io +fftw +fftw-threads +fox g
 REQUIRED_USE="scripts? ( ${PYTHON_REQUIRED_USE} )
 	test? ( ${PYTHON_REQUIRED_USE} )"
 
-RDEPEND="virtual/blas
-	virtual/lapack
+RDEPEND="
 	atompaw? ( >=sci-physics/atompaw-3.0.1.9-r1[libxc?] )
 	bigdft? ( ~sci-libs/bigdft-abi-1.0.4 )
 	cuda? ( dev-util/nvidia-cuda-sdk )
@@ -170,7 +172,9 @@ pkg_setup() {
 	if use scripts || use test; then
 		python-single-r1_pkg_setup
 	fi
-
+	
+	blas_pkg_setup
+	lapack_pkg_setup
 }
 
 src_prepare() {

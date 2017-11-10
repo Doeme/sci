@@ -5,7 +5,10 @@ EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit autotools-utils eutils flag-o-matic fortran-2 multilib python-single-r1 toolchain-funcs
+BLAS_COMPAT_ALL=1
+LAPACK_COMPAT_ALL=1
+
+inherit autotools-utils eutils flag-o-matic fortran-2 multilib python-single-r1 toolchain-funcs blas lapack
 
 DESCRIPTION="Total energy, charge density and electronic structure using DFT"
 HOMEPAGE="http://www.abinit.org/"
@@ -186,6 +189,8 @@ pkg_setup() {
 
 	python-single-r1_pkg_setup
 
+	blas_pkg_setup
+	lapack_pkg_setup
 }
 
 src_prepare() {
