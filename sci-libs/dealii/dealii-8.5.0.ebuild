@@ -50,21 +50,20 @@ REQUIRED_USE="
 RDEPEND="dev-libs/boost
 	app-arch/bzip2
 	sys-libs/zlib
-	arpack? ( sci-libs/arpack[mpi=] )
+	arpack? ( sci-libs/arpack[${LAPACK_USEDEP},mpi=] )
 	gsl? ( sci-libs/gsl )
 	hdf5? ( sci-libs/hdf5[mpi=] )
-	lapack? ( virtual/lapack )
 	metis? ( >=sci-libs/parmetis-4 )
 	mpi? ( virtual/mpi )
 	muparser? ( dev-cpp/muParser )
 	netcdf? ( sci-libs/netcdf-cxx:0 )
 	opencascade? ( sci-libs/opencascade:* )
 	p4est? ( sci-libs/p4est[mpi] )
-	petsc? ( sci-mathematics/petsc[mpi=] )
-	slepc? ( sci-mathematics/slepc[mpi=] )
+	petsc? ( sci-mathematics/petsc[${LAPACK_USEDEP},mpi=] )
+	slepc? ( sci-mathematics/slepc[${LAPACK_USEDEP},mpi=] )
 	sparse? ( sci-libs/umfpack )
 	tbb? ( dev-cpp/tbb )
-	trilinos? ( sci-libs/trilinos )"
+	trilinos? ( sci-libs/trilinos[${LAPACK_USEDEP}] )"
 
 DEPEND="${RDEPEND}
 	virtual/pkgconfig

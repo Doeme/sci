@@ -60,12 +60,12 @@ RDEPEND="dev-libs/boost
 	muparser? ( dev-cpp/muParser )
 	netcdf? ( sci-libs/netcdf-cxx:0 )
 	opencascade? ( sci-libs/opencascade:* )
-	p4est? ( sci-libs/p4est[mpi] )
+	p4est? ( sci-libs/p4est[${LAPACK_USEDEP},mpi] )
 	parameter_gui? ( dev-qt/qtgui:4 )
-	petsc? ( sci-mathematics/petsc[mpi=] )
+	petsc? ( sci-mathematics/petsc[${LAPACK_USEDEP},mpi=] )
 	sparse? ( sci-libs/umfpack )
 	tbb? ( dev-cpp/tbb )
-	trilinos? ( sci-libs/trilinos )"
+	trilinos? ( sci-libs/trilinos[${LAPACK_USEDEP}] )"
 
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
