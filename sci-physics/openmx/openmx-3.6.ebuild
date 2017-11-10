@@ -1,11 +1,12 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
-BLAS_COMPAT=(openblas refblas)
+BLAS_COMPAT_ALL=1
+LAPACK_COMPAT_ALL=1
 
-inherit eutils multilib toolchain-funcs blas
+inherit eutils multilib toolchain-funcs blas lapack
 
 DESCRIPTION="Material eXplorer"
 HOMEPAGE="http://www.openmx-square.org/"
@@ -17,11 +18,8 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="-debug mpi openmp test"
-REQUIRED_USE="${BLAS_REQ_USE}"
 
 RDEPEND="
-	${BLAS_DEPS}
-	virtual/lapack
 	sci-libs/fftw:3.0[mpi?,openmp?]
 	mpi? ( virtual/mpi )"
 DEPEND="${RDEPEND}
@@ -44,6 +42,7 @@ pkg_setup() {
 		fi
 	fi
 	blas_pkg_setup
+	lapack_pkg_setup
 }
 
 src_prepare() {

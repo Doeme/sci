@@ -1,11 +1,12 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
-BLAS_COMPAT=( refblas openblas )
+BLAS_COMPAT_ALL=1
+LAPACK_COMPAT_ALL=1
 
-inherit eutils multilib toolchain-funcs fortran-2 blas
+inherit eutils multilib toolchain-funcs blas lapack
 
 PATCHDATE="14Feb17"
 
@@ -21,8 +22,6 @@ KEYWORDS="~amd64 ~x86"
 IUSE="-debug mpi openmp test"
 
 RDEPEND="
-	${BLAS_DEPS}
-	virtual/lapack
 	sci-libs/fftw:3.0[mpi?,openmp?]
 	mpi? ( virtual/mpi )"
 DEPEND="${RDEPEND}
@@ -106,14 +105,15 @@ pkg_setup() {
 			export FC="${FC} ${openmp}"
 		fi
 	fi
+
 	blas_pkg_setup
+	lapack_pkg_setup
 }
 
 src_prepare() {
 	cd "${WORKDIR}"
 	mv *.[hc] "${S}"/source
 	epatch "${FILESDIR}/3.7-fortran_objects.patch"
-	eapply_user
 }
 
 src_configure() {
