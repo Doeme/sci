@@ -22,12 +22,11 @@ IUSE="atompaw bigdft cuda cuda-double -debug +etsf_io +fftw fftw-mpi +fftw-threa
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 #"			scalapack? ( !bigdft )"
 
-RDEPEND="virtual/blas
-	virtual/lapack
+RDEPEND="
 	${PYTHON_DEPS}
 	dev-python/numpy
 	atompaw? ( >=sci-physics/atompaw-4.0.0.10[libxc?] )
-	bigdft? ( >=sci-physics/bigdft-1.7.0.93[scalapack?]
+	bigdft? ( >=sci-physics/bigdft-1.7.0.93[${BLAS_USEDEP},${LAPACK_USEDEP},scalapack?]
 		<sci-physics/bigdft-1.7.5 )
 	cuda? ( dev-util/nvidia-cuda-sdk )
 	etsf_io? ( >=sci-libs/etsf_io-1.0.4 )
@@ -46,7 +45,7 @@ RDEPEND="virtual/blas
 	fox? ( >=sci-libs/fox-4.1.2-r2[sax] )
 	gsl? ( sci-libs/gsl )
 	hdf5? ( sci-libs/hdf5[fortran] )
-	levmar? ( sci-libs/levmar )
+	levmar? ( sci-libs/levmar[${BLAS_USEDEP},${LAPACK_USEDEP}] )
 	libxc? ( >=sci-libs/libxc-2.0.3[fortran]
 			<sci-libs/libxc-2.2 )
 	netcdf? (
@@ -59,7 +58,7 @@ RDEPEND="virtual/blas
 	mpi? ( virtual/mpi )
 	scalapack? ( virtual/scalapack )
 	scripts? ( dev-python/PyQt4 )
-	wannier? ( >=sci-libs/wannier90-1.2-r1 )"
+	wannier? ( >=sci-libs/wannier90-1.2-r1[${BLAS_USEDEP},${LAPACK_USEDEP}] )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	dev-perl/Text-Markdown"

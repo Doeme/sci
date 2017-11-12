@@ -23,8 +23,8 @@ REQUIRED_USE="scripts? ( ${PYTHON_REQUIRED_USE} )
 	test? ( ${PYTHON_REQUIRED_USE} )"
 
 RDEPEND="
-	atompaw? ( >=sci-physics/atompaw-3.0.1.9-r1[libxc?] )
-	bigdft? ( ~sci-libs/bigdft-abi-1.0.4 )
+	atompaw? ( >=sci-physics/atompaw-3.0.1.9-r1[${BLAS_USEDEP},${LAPACK_USEDEP},libxc?] )
+	bigdft? ( ~sci-libs/bigdft-abi-1.0.4[${BLAS_USEDEP},${LAPACK_USEDEP}] )
 	cuda? ( dev-util/nvidia-cuda-sdk )
 	etsf_io? ( >=sci-libs/etsf_io-1.0.3-r2 )
 	fftw? (
@@ -34,7 +34,7 @@ RDEPEND="
 	fox? ( >=sci-libs/fox-4.1.2-r2[sax] )
 	gsl? ( sci-libs/gsl )
 	hdf5? ( sci-libs/hdf5[fortran] )
-	levmar? ( sci-libs/levmar )
+	levmar? ( sci-libs/levmar[${BLAS_USEDEP},${LAPACK_USEDEP}] )
 	libxc? ( >=sci-libs/libxc-2.0[fortran]
 			<sci-libs/libxc-2.2 )
 	netcdf? (
@@ -50,7 +50,7 @@ RDEPEND="
 	scripts? ( ${PYTHON_DEPS}
 		dev-python/numpy
 		dev-python/PyQt4 )
-	wannier? ( >=sci-libs/wannier90-1.2-r1 )"
+	wannier? ( >=sci-libs/wannier90-1.2-r1[${BLAS_USEDEP},${LAPACK_USEDEP}] )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	dev-perl/Text-Markdown
