@@ -10,6 +10,13 @@ inherit alternatives-2 autotools-multilib eutils toolchain-funcs
 
 BLAS_COMPAT_ALL=1
 BLAS_USE_CBLAS=1
+BLAS_CONDITIONAL_FLAG="cblas-external"
+BLAS_REQ_USE="${MULTILIB_USEDEP}"
+
+inherit blas
+
+BLAS_COMPAT_ALL=1
+BLAS_USE_CBLAS=1
 BLAS_REQ_USE="${MULTILIB_USEDEP}"
 BLAS_CONDITIONAL_FLAG="cblas-external"
 
